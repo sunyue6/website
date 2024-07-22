@@ -17,7 +17,11 @@ const CodeEditor: React.FC = () => {
             const output = eval(code);
             setResult(String(output));
         } catch (error) {
-            setResult(`Error: ${error.message}`);
+            if (error instanceof Error) {
+                setResult(`Error: ${error.message}`);
+            } else {
+                setResult('Unknown error occurred');
+            }
         }
     };
 
